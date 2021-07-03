@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}</label>
-                                    <textarea class="form-control" name="description" rows="4">{{ $task->description }}</textarea>
+                                    <textarea class="form-control" name="description" rows="4" id="taskEditor">{{ $task->description }}</textarea>
                                 </div>
 
                                 <div class="card-footer">
@@ -42,4 +42,14 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#taskEditor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection
