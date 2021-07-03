@@ -40,42 +40,9 @@
                     <div class="card">
                         <div class="card-header"><strong>{{ __('All Tasks') }}</strong></div>
                         <div class="card-body">
-                            <table class="table table-responsive-sm table-striped">
-                                <thead>
-                                <tr>
-                                    <th>{{ __('#ID') }}</th>
-                                    <th>{{ __('Name') }}</th>
-                                    <th>{{ __('Action') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ( $checklist->tasks as $task)
-                                    <tr>
-                                        <td>{{ $task->id }}</td>
-                                        <td>{{ $task->name }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.checklist.tasks.edit', [$checklist, $task]) }}"
-                                               class="btn btn-sm btn-info"
-                                            >Edit</a>
-                                            <form
-                                                style="display: inline-block"
-                                                action="{{ route('admin.checklist.tasks.destroy', [$checklist, $task]) }}"
-                                                method="post"
-                                            >
-                                                @csrf
-                                                @method('DELETE')
 
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('{{ __('Are you sure?') }}')"
-                                                >Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            @livewire('task-table', ['checklist' => $checklist])
+
                         </div>
                     </div>
 

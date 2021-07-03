@@ -12,6 +12,8 @@
           integrity="sha512-ygIxOy3hmN2fzGeNqys7ymuBgwSCet0LVfqQbWY10AszPMn2rB9JY0eoG0m1pySicu+nvORrBmhHVSt7+GI9VA=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+    @livewireStyles
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body class="c-app">
@@ -118,6 +120,8 @@
 </script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+@livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 
 </body>
 </html>
