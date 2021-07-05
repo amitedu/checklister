@@ -4,28 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChecklistGroupRequest;
+use App\Http\Requests\UpdateChecklistGroupRequest;
 use App\Models\ChecklistGroup;
-use Illuminate\view\view;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ChecklistGroupController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return view
-     */
-    public function create(): view
+    public function create(): View
     {
         return view('admin.checklist_group.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param ChecklistGroupRequest $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function store(ChecklistGroupRequest $request)
+
+    public function store(ChecklistGroupRequest $request): RedirectResponse
     {
         ChecklistGroup::create($request->validated());
 
@@ -33,37 +25,20 @@ class ChecklistGroupController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param ChecklistGroup $checklistGroup
-     * @return view
-     */
-    public function edit(ChecklistGroup $checklistGroup):view
+    public function edit(ChecklistGroup $checklistGroup): View
     {
         return view('admin.checklist_group.edit', ['checklistGroup' => $checklistGroup]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param ChecklistGroupRequest $checklistGroupRequest
-     * @param ChecklistGroup $checklistGroup
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(ChecklistGroupRequest $checklistGroupRequest, ChecklistGroup $checklistGroup)
+
+    public function update(UpdateChecklistGroupRequest $updateChecklistGroupRequest, ChecklistGroup $checklistGroup): RedirectResponse
     {
-        $checklistGroup->update($checklistGroupRequest->validated());
+        $checklistGroup->update($updateChecklistGroupRequest->validated());
         return redirect(route('home'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param ChecklistGroup $checklistGroup
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
-     */
-    public function destroy(ChecklistGroup $checklistGroup)
+
+    public function destroy(ChecklistGroup $checklistGroup): RedirectResponse
     {
         $checklistGroup->delete();
 
